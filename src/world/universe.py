@@ -12,8 +12,8 @@ class Universe:
             print("System:", system.name)
             print("Star:", system.star.name)
             print("Planets:")
-            for planet in system.planets:
-                print(planet)
+            for  i, planet in enumerate(system.planets):
+                print(f"{i+1}-{planet}")
 
       
             

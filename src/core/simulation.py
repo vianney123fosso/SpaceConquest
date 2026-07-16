@@ -4,6 +4,8 @@ from world.universe import Universe
 from world.solar_system import SolarSystem
 from world.star import Star
 from world.planet import Planet
+from entities.colony import Colony
+from entities.civilization import Civilization
 
 class Simulation:
     def __init__(self):
@@ -23,8 +25,19 @@ class Simulation:
         print("INITIALISATION DE L'UNIVERS")
         
         sun = Star("Sun",mass=1.989e30,temperature=5778)
+        
         solar_system = SolarSystem("Sol",sun)
+        
         earth = Planet("Earth",mass=5.972e24,radius=6371)
+        
+        humanity = Civilization("Humanity")
+        earth_colony = Colony("Earth Colony",earth)
+        humanity.add_colony(earth_colony)
+
+        self.civilizations = [humanity]
+        """human_colony = Colony("Earth Colony")
+        earth.add_colony(human_colony)"""
+        
         mars = Planet("Mars",mass=6.39e23,radius=3389)
         
         solar_system.add_planet(earth)
@@ -37,6 +50,11 @@ class Simulation:
         print("Simulation time :", self.clock.time)
         """for system in self.systems:
             system.update(self.universe)"""
+        
+        print("Civilizations:")
+
+        for civilization in self.civilizations:
+            print(civilization)
             
     
 

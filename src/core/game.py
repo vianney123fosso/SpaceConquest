@@ -12,7 +12,6 @@ class Game:
             time.sleep(1)"""
             
     def run(self):
-        for _ in range(3):
-            self.simulation.update()
-            time.sleep(1)
+        self.simulation.update()
+        
         
