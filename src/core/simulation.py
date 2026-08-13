@@ -6,18 +6,16 @@ from world.star import Star
 from world.planet import Planet
 from entities.colony import Colony
 from entities.civilization import Civilization
+from systems.population_system import PopulationSystem
 
 class Simulation:
     def __init__(self):
         self.clock = Clock()
         self.universe = Universe()
         self.initialize_universe()
-        """self.systems = [
-            EconomySystem(),
-            ResearchSystem(),
-            PopulationSystem(),
-            PhysicsSystem()
-        ]"""
+        self.systems = [
+            PopulationSystem()
+        ]
         
      
     
@@ -43,18 +41,17 @@ class Simulation:
         solar_system.add_planet(earth)
         solar_system.add_planet(mars)
         self.universe.add_solar_system(solar_system)
-
-    def update(self):
-        self.clock.advance(1)
-        self.universe.display()
-        print("Simulation time :", self.clock.time)
-        """for system in self.systems:
-            system.update(self.universe)"""
         
-        print("Civilizations:")
+        
+    def update(self):
 
+        self.clock.advance(1)
+        for system in self.systems:
+            system.update(self)
+        print(f"Time : {self.clock.time}")
         for civilization in self.civilizations:
             print(civilization)
+
             
     
 
